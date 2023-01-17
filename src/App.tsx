@@ -11,7 +11,7 @@ import { PedidoContextProvider } from "./components/contexts/PedidoContext";
 
 
 function App() {
-  const [inicioVisible, setInicioVisible] = useState(false)
+  const [inicioVisible, setInicioVisible] = useState(true)
   
   return (
     <>
