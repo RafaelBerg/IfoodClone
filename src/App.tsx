@@ -1,6 +1,6 @@
 import "./styles/global.css"
 import config from "../config.json"
-import { useState } from "react";
+import { useContext, useEffect } from "react";
 
 import { Header } from './components/Header';
 import { MenuLateral } from "./components/MenuLateral";
@@ -8,21 +8,29 @@ import { MenuPedidos } from "./components/MenuPedidos";
 import { Inicio } from "./components/Inicio";
 import { DetalhesPedido } from "./components/DetalhesPedido";
 import { PedidoContextProvider } from "./components/contexts/PedidoContext";
-
+import { Cardapio } from "./components/Cardapio";
+import { VisibleContext } from "./components/contexts/VisibleContext";
 
 function App() {
-  const [inicioVisible, setInicioVisible] = useState(true)
-  
+  const contextVisible = useContext(VisibleContext)
+
+  useEffect(()=> {
+    contextVisible.setVisible({inicioVisible: true, detalhesVisible: false, cardapioVisible: false})
+  },[])
+
+  const {inicioVisible, detalhesVisible, cardapioVisible } = contextVisible.visible
+
   return (
-    <>
+    <>            
       <Header />
-      <body id="body" className="flex">
-        <MenuLateral setInicioVisible={setInicioVisible}/>
+      <body className="flex">
+        <MenuLateral />
         <PedidoContextProvider>
-          <MenuPedidos config={config} inicioVisible={inicioVisible} setInicioVisible={setInicioVisible}/>  
-          {!inicioVisible && <DetalhesPedido />}        
+          <MenuPedidos config={config}/>  
+          {detalhesVisible && <DetalhesPedido />}        
         </PedidoContextProvider>
         {inicioVisible && <Inicio />}
+        {cardapioVisible && <Cardapio />}
       </body>         
     </>
   )

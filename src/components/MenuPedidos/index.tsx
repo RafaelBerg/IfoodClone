@@ -1,16 +1,12 @@
 import { useState } from "react"
 import { CardPedido } from "./CardPedido"
 
-
 interface MenuProps{
-    inicioVisible: boolean,
-    setInicioVisible: Function,
     config: any
 }
 
-
 export const MenuPedidos = (props: MenuProps) => {
-    const {inicioVisible, setInicioVisible, config } = props
+    const { config } = props
     const [reset, setReset] = useState(false)
     const [search, setSearch] = useState("")
     
@@ -26,7 +22,7 @@ export const MenuPedidos = (props: MenuProps) => {
                         return pedido.numero.includes(search)
                     }).map((props)=> {
                         return(
-                            <CardPedido key={props.numero} numero={props.numero} itens={props.itens} reset={reset} setReset={setReset} inicioVisible={inicioVisible} setInicioVisible={setInicioVisible} />
+                            <CardPedido key={props.numero} numero={props.numero} itens={props.itens} reset={reset} setReset={setReset} />
                         )})}                                                                                                                      
                 </div>
             </div>
