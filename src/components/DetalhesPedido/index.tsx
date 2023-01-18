@@ -9,9 +9,6 @@ export const DetalhesPedido = () => {
     return(
         <div className={"flex flex-col m-14 gap-10"}>
             <h1 className="text-3xl text-gray-600">Pedido #{context.pedido.numero}
-                <strong className="font-bold text-4xl"> - </strong> 
-                Feito às 
-                <strong> 14:13</strong>
             </h1>
             <div>              
                 {context.pedido.itens?.map((item) => {

@@ -10,7 +10,7 @@ type VisibleContextType = {
 }
 
 const initialValues = {
-    visible: {inicioVisible: true, detalhesVisible: false, cardapioVisible: false},
+    visible: {},
     setVisible: () => {}
 }
 

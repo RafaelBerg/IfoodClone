@@ -26,11 +26,11 @@ function App() {
       <body className="flex">
         <MenuLateral />
         <PedidoContextProvider>
-          <MenuPedidos config={config}/>  
+          {!cardapioVisible && <MenuPedidos config={config}/>}  
           {detalhesVisible && <DetalhesPedido />}        
         </PedidoContextProvider>
         {inicioVisible && <Inicio />}
-        {cardapioVisible && <Cardapio />}
+        {cardapioVisible && <Cardapio />}        
       </body>         
     </>
   )

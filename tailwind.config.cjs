@@ -19,7 +19,8 @@ module.exports = {
         "size": "120vh"
       },
       maxHeight: {
-        "100": "65.7vh"
+        "100": "65.7vh",
+        "120": "75.7vh"
       }
     },
   },
