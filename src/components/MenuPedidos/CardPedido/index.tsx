@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import { PedidoContext } from "./contexts/PedidoContext"
+import { PedidoContext } from "../../contexts/PedidoContext"
 
 interface CardProps{
    inicioVisible: boolean,

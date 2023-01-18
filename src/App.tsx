@@ -1,6 +1,6 @@
 import "./styles/global.css"
 import config from "../config.json"
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { Header } from './components/Header';
 import { MenuLateral } from "./components/MenuLateral";

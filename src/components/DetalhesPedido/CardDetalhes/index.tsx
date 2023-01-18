@@ -2,7 +2,7 @@
 
 interface CardProps{
     prato: string,
-    qntd: string,
+    qntd?: string,
     valor: string
 }
 
