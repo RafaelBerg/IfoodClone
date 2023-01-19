@@ -22,7 +22,7 @@ export const MenuIcon = (props: MenuIconProps) => {
     const style = selected ? "cursor-pointer flex flex-col items-center gap-1 bg-gray-select rounded-lg px-3 py-3 m-1" : "cursor-pointer flex flex-col items-center gap-1 px-3 py-3 m-1 hover:bg-gray-select hover:rounded-lg"
     return(
         <li className={style} onClick={() => {
-            contextVisible.setVisible({inicioVisible: inicio, detalhesVisible: false, cardapioVisible: !inicio})
+            contextVisible.setVisible({inicioVisible: inicio, detalhesVisible: false, cardapioVisible: !inicio, cadastroVisible: false})
             setReset(!reset)
             setTimeout(() => setSelected(true), 0);         
         }}>

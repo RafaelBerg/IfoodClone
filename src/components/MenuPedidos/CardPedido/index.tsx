@@ -31,7 +31,7 @@ export const CardPedido = (props: CardProps) => {
     return(
        <div className={style}
          onClick={()=> {             
-            contextVisible.setVisible({inicioVisible: false, detalhesVisible: true, cardapioVisible: false})                   
+            contextVisible.setVisible({inicioVisible: false, detalhesVisible: true, cardapioVisible: false, cadastroVisible: false})                   
             setReset(!reset)
             setTimeout(() => setSelected(true), 0);
             context.setPedido({numero: props.numero, itens: props.itens})                                  

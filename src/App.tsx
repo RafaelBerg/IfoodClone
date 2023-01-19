@@ -10,15 +10,16 @@ import { DetalhesPedido } from "./components/DetalhesPedido";
 import { PedidoContextProvider } from "./components/contexts/PedidoContext";
 import { Cardapio } from "./components/Cardapio";
 import { VisibleContext } from "./components/contexts/VisibleContext";
+import { CadastroItem } from "./components/CadastroItem";
 
 function App() {
   const contextVisible = useContext(VisibleContext)
 
   useEffect(()=> {
-    contextVisible.setVisible({inicioVisible: true, detalhesVisible: false, cardapioVisible: false})
+    contextVisible.setVisible({inicioVisible: true, detalhesVisible: false, cardapioVisible: false, cadastroVisible: false})
   },[])
 
-  const {inicioVisible, detalhesVisible, cardapioVisible } = contextVisible.visible
+  const {inicioVisible, detalhesVisible, cardapioVisible, cadastroVisible } = contextVisible.visible
 
   return (
     <>            
@@ -30,7 +31,8 @@ function App() {
           {detalhesVisible && <DetalhesPedido />}        
         </PedidoContextProvider>
         {inicioVisible && <Inicio />}
-        {cardapioVisible && <Cardapio />}        
+        {cardapioVisible && <Cardapio />}
+        {cadastroVisible && <CadastroItem />}
       </body>         
     </>
   )

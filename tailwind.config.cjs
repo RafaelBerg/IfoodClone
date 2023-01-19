@@ -10,6 +10,7 @@ module.exports = {
         "gray-350": "#3E3E3E",
         "gray-150": "#F2F2F2",
         "gray-select": "#6F6F6F"
+        
       },
       height: {
         "full-size" : "80.4vh",        
@@ -21,7 +22,7 @@ module.exports = {
       maxHeight: {
         "100": "65.7vh",
         "120": "75.7vh"
-      }
+      },
     },
   },
   plugins: [],
