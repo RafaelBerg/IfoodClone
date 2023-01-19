@@ -6,7 +6,7 @@ export const CadastroItem = () => {
     const contextVisible = useContext(VisibleContext)
 
     return(
-        <div className="flex justify-center items-center absolute w-full h-full bg-gray-900 bg-opacity-30 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <div className="flex justify-center items-center absolute w-full h-full bg-zinc-900 bg-opacity-40 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <div className="flex flex-col gap-2 bg-white p-12 h-4/6 flex-wrap">
                 <Input nome="Nome" style="border-2 py-2 pr-60 pl-2 rounded-lg focus:border-red-600 focus:outline-none" />
                 <Input nome="Preço" style="border-2 py-2 pr-10 pl-2 w-48 rounded-lg focus:border-red-600 focus:outline-none" />

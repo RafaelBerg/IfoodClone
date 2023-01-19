@@ -11,15 +11,20 @@ import { PedidoContextProvider } from "./components/contexts/PedidoContext";
 import { Cardapio } from "./components/Cardapio";
 import { VisibleContext } from "./components/contexts/VisibleContext";
 import { CadastroItem } from "./components/CadastroItem";
+import { Config } from "./components/Config";
 
 function App() {
   const contextVisible = useContext(VisibleContext)
 
   useEffect(()=> {
-    contextVisible.setVisible({inicioVisible: true, detalhesVisible: false, cardapioVisible: false, cadastroVisible: false})
+    contextVisible.setVisible({inicioVisible: true, 
+      detalhesVisible: false, 
+      cardapioVisible: false, 
+      cadastroVisible: false,
+      configVisible: false})
   },[])
 
-  const {inicioVisible, detalhesVisible, cardapioVisible, cadastroVisible } = contextVisible.visible
+  const {inicioVisible, detalhesVisible, cardapioVisible, cadastroVisible, configVisible } = contextVisible.visible
 
   return (
     <>            
@@ -27,12 +32,13 @@ function App() {
       <body className="flex">
         <MenuLateral />
         <PedidoContextProvider>
-          {!cardapioVisible && <MenuPedidos config={config}/>}  
+          {(!cardapioVisible && !configVisible) && <MenuPedidos config={config}/>}  
           {detalhesVisible && <DetalhesPedido />}        
         </PedidoContextProvider>
         {inicioVisible && <Inicio />}
         {cardapioVisible && <Cardapio />}
         {cadastroVisible && <CadastroItem />}
+        {configVisible &&  <Config />}
       </body>         
     </>
   )

@@ -15,11 +15,11 @@ export const Cardapio = () => {
             
             </div>
             <div className="flex justify-between mt-8 ml-2">
-                  <p>Item</p>
-                  <div className="flex gap-20 mr-6">
-                    <p>Preço</p>
-                    <p>Status</p>
-                  </div>               
+                <p>Item</p>
+                <div className="flex gap-20 mr-6">
+                <p>Preço</p>
+                <p>Status</p>
+                </div>               
             </div>
             <CardItem />
             <CardItem />
