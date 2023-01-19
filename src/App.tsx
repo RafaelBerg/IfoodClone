@@ -12,6 +12,7 @@ import { Cardapio } from "./components/Cardapio";
 import { VisibleContext } from "./components/contexts/VisibleContext";
 import { CadastroItem } from "./components/CadastroItem";
 import { Config } from "./components/Config";
+import { Login } from "./Login";
 
 function App() {
   const contextVisible = useContext(VisibleContext)
@@ -21,25 +22,31 @@ function App() {
       detalhesVisible: false, 
       cardapioVisible: false, 
       cadastroVisible: false,
-      configVisible: false})
+      configVisible: false,
+      loginVisible: true
+    })
   },[])
 
-  const {inicioVisible, detalhesVisible, cardapioVisible, cadastroVisible, configVisible } = contextVisible.visible
+  const {inicioVisible, detalhesVisible, cardapioVisible, cadastroVisible, configVisible, loginVisible } = contextVisible.visible
 
   return (
-    <>            
-      <Header />
-      <body className="flex">
-        <MenuLateral />
-        <PedidoContextProvider>
-          {(!cardapioVisible && !configVisible) && <MenuPedidos config={config}/>}  
-          {detalhesVisible && <DetalhesPedido />}        
-        </PedidoContextProvider>
-        {inicioVisible && <Inicio />}
-        {cardapioVisible && <Cardapio />}
-        {cadastroVisible && <CadastroItem />}
-        {configVisible &&  <Config />}
-      </body>         
+    <> 
+      {loginVisible ? 
+        <Login /> : 
+        <>
+          <Header />
+          <body className="flex">
+            <MenuLateral />
+            <PedidoContextProvider>
+              {(!cardapioVisible && !configVisible) && <MenuPedidos config={config}/>}  
+              {detalhesVisible && <DetalhesPedido />}        
+            </PedidoContextProvider>
+            {inicioVisible && <Inicio />}
+            {cardapioVisible && <Cardapio />}
+            {cadastroVisible && <CadastroItem />}
+            {configVisible &&  <Config />}
+          </body>  
+      </>}   
     </>
   )
 }
