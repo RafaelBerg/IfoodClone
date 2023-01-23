@@ -7,7 +7,7 @@ export const DetalhesPedido = () => {
     let soma = 0
 
     return(
-        <div className={"flex flex-col m-14 gap-10"}>
+        <div className={"flex flex-col m-14 gap-10 w-full"}>
             <h1 className="text-3xl text-gray-600">Pedido #{context.pedido.numero}
             </h1>
             <div>              

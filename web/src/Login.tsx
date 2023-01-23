@@ -8,7 +8,7 @@ export const Login = () => {
 
     return(
         <div className="flex">
-            <img className="h-screen" src="src\assets\capa.jpg"/>
+            <img className="h-screen w-full" src="src\assets\capa.jpg"/>
             <div className="flex flex-col justify-center w-screen align-middle m-24 gap-2">               
                 <div className="mb-4">
                     <h2 className="text-3xl font-bold text-gray-800">Portal do Parceiro</h2>
