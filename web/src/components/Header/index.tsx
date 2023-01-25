@@ -1,10 +1,14 @@
+import { useContext } from "react"
+import { LojaContext } from "../contexts/LojaContext"
+
 export const Header = () => {
+    const contextLoja = useContext(LojaContext)
     return(
         <div className="flex justify-between items-center shadow-lg h-16">
             <div className="flex gap-4 ml-6 items-center">
                 <img className="w-8 h-8" src="src\assets\icon.png"/>
                 <h3 className="text-lg font-semibold">
-                    Burguer
+                    {contextLoja.loja.nome}
                 </h3>
             </div>          
             <div className="flex items-center gap-6">

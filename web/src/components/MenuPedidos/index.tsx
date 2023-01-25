@@ -1,12 +1,38 @@
-import { useState } from "react"
+import { useContext, useEffect, useState } from "react"
+import { api } from "../../lib/axios"
+import { LojaContext } from "../contexts/LojaContext"
 import { CardPedido } from "./CardPedido"
 
-interface MenuProps{
-    config: any
-}
+type Pedidos = {
+    id: number
+    concluido: boolean
+    loja_fk: string
+    cliente_fk: string
+}[]
 
-export const MenuPedidos = (props: MenuProps) => {
-    const { config } = props
+
+export const MenuPedidos = () => {
+    const contextLoja = useContext(LojaContext)
+    
+    const [pedidos, setPedidos] = useState<Pedidos>()
+
+    function atualizarPedidos() {
+        setTimeout(() => {
+            api.get(`pedidos?loja=${contextLoja.loja.nome}`).then((response)=>{
+                setPedidos(response.data)
+            })
+            atualizarPedidos()
+    }, 5000)}
+
+    useEffect(() => {
+        api.get(`pedidos?loja=${contextLoja.loja.nome}`).then((response)=>{
+            setPedidos(response.data)
+        })
+        atualizarPedidos()
+    },[contextLoja.loja.nome])
+
+    
+    
     const [reset, setReset] = useState(false)
     const [search, setSearch] = useState("")
     
@@ -17,12 +43,12 @@ export const MenuPedidos = (props: MenuProps) => {
                 <h2 className="bg-gray-150 mt-3 pl-7 py-2 border-y-2 border-gray-200">
                     Pendente X
                 </h2>
-                <div className="overflow-y-scroll max-h-100">
-                    {config.pedidos.filter((pedido) => {
-                        return pedido.numero.includes(search)
+                <div className="overflow-y-scroll max-h-100 flex flex-col-reverse">
+                    {pedidos?.filter((pedido) => {
+                        return pedido.id.toString().includes(search)
                     }).map((props)=> {
                         return(
-                            <CardPedido key={props.numero} numero={props.numero} itens={props.itens} reset={reset} setReset={setReset} />
+                            <CardPedido key={props.id} id={props.id.toString()} reset={reset} setReset={setReset} />
                         )})}                                                                                                                      
                 </div>
             </div>

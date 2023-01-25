@@ -1,15 +1,36 @@
 import { useContext, useEffect, useState } from "react"
+import { api } from "../../../lib/axios"
 import { PedidoContext } from "../../contexts/PedidoContext"
 import { VisibleContext } from "../../contexts/VisibleContext"
 
 interface CardProps{
    reset: boolean,
    setReset: Function
-   numero: string,
-   itens: any
-   
+   id: string,
+   itens?: any
 }
+
+type Itens = {
+   id: number
+   nome: boolean
+   qntd: number
+   pedido_fk: number
+   status: boolean
+   preco: number
+   loja_fk: string
+}[]
+
+
 export const CardPedido = (props: CardProps) => {
+   const [itens, setItens] = useState<Itens>()
+
+   useEffect(() => {
+      api.get(`itens?pedido=${props.id}`).then((response)=>{
+         setItens(response.data)
+      })
+   },[]) 
+
+   
    const { reset, setReset } = props
    const [selected,setSelected] = useState(false)
 
@@ -34,11 +55,11 @@ export const CardPedido = (props: CardProps) => {
             contextVisible.setVisible({inicioVisible: false, detalhesVisible: true, cardapioVisible: false, cadastroVisible: false})                   
             setReset(!reset)
             setTimeout(() => setSelected(true), 0);
-            context.setPedido({numero: props.numero, itens: props.itens})                                  
+            context.setPedido({numero: props.id, itens: itens})                                  
             }
          }
        >
-          <p>#{props.numero}</p>
+          <p>#{props.id}</p>
           <h2>Confirme o pedido</h2>
        </div>
     )

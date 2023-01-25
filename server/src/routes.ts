@@ -55,7 +55,7 @@ export async function appRoutes(app: FastifyInstance){
 
         const { email } = getCliente.parse(request.query)
 
-        const cliente = await prisma.cliente.findMany({
+        const cliente = await prisma.cliente.findUnique({
             where:{
                 email: email
             }
@@ -70,7 +70,7 @@ export async function appRoutes(app: FastifyInstance){
 
         const { nome } = getLoja.parse(request.query)
 
-        const loja = await prisma.loja.findMany({
+        const loja = await prisma.loja.findUnique({
             where:{
                 nome: nome
             }
@@ -115,7 +115,7 @@ export async function appRoutes(app: FastifyInstance){
           })
     })
 
-    app.post("/cliente", async (request) => {
+    app.post("/addCliente", async (request) => {
         const createCliente = z.object({
             nome: z.string(),
             email: z.string(),
@@ -133,7 +133,7 @@ export async function appRoutes(app: FastifyInstance){
           })
     })
 
-    app.post("/loja", async (request) => {
+    app.post("/addLoja", async (request) => {
         const createLoja = z.object({
             nome: z.string(),
             email: z.string(),
@@ -214,7 +214,7 @@ export async function appRoutes(app: FastifyInstance){
           
     })
 
-    app.post("/cardapio", async (request) => {
+    app.post("/addCardapio", async (request) => {
         const createCardapio = z.object({
             nome: z.string(),
             preco: z.number(),
