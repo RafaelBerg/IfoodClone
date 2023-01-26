@@ -1,5 +1,5 @@
 import "./styles/global.css"
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 
 import { Header } from './components/Header';
 import { MenuLateral } from "./components/MenuLateral";
@@ -12,12 +12,6 @@ import { VisibleContext } from "./components/contexts/VisibleContext";
 import { CadastroItem } from "./components/CadastroItem";
 import { Config } from "./components/Config";
 import { Login } from "./components/Login";
-
-type Loja = {
-  nome: string
-  email: string
-  senha: string
-}
 
 function App() {
   const contextVisible = useContext(VisibleContext)
@@ -40,7 +34,7 @@ function App() {
         <Login /> : 
         <>
           <Header />
-          <body className="flex">
+          <div className="flex">
             <MenuLateral />
             <PedidoContextProvider>
               {(!cardapioVisible && !configVisible) && <MenuPedidos />}  
@@ -50,7 +44,7 @@ function App() {
             {cardapioVisible && <Cardapio />}
             {cadastroVisible && <CadastroItem />}
             {configVisible &&  <Config />}
-          </body>  
+          </div>  
       </>}   
     </>
   )

@@ -232,4 +232,22 @@ export async function appRoutes(app: FastifyInstance){
             }
           })
     })
+    app.post("/updCardapio", async (request) => {
+        const updateCardapio = z.object({
+            id: z.number(),
+            preco: z.number(),
+            status: z.boolean()
+        })
+
+        const { id, preco, status } = updateCardapio.parse(request.body)
+        await prisma.cardapio.update({
+            where:{
+                id: id
+            },
+            data:{
+                preco: preco,
+                status: status
+            }
+        })
+    })
 }

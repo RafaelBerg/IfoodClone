@@ -10,7 +10,7 @@ export const Input = (props : Input) => {
     return(
         <div className="flex flex-col">
             <label className="pl-1">{props.nome}</label>
-            <input className={props.style} type={props.type} id={props.id}  accept={props.accept}/>               
+            <input className={props.style} required type={props.type} id={props.id}  accept={props.accept}/>               
         </div>
     )
 }

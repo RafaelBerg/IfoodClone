@@ -13,7 +13,6 @@ type Pedidos = {
 
 export const MenuPedidos = () => {
     const contextLoja = useContext(LojaContext)
-    
     const [pedidos, setPedidos] = useState<Pedidos>()
 
     function atualizarPedidos() {
@@ -31,8 +30,6 @@ export const MenuPedidos = () => {
         atualizarPedidos()
     },[contextLoja.loja.nome])
 
-    
-    
     const [reset, setReset] = useState(false)
     const [search, setSearch] = useState("")
     
