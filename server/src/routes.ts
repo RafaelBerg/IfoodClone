@@ -137,16 +137,30 @@ export async function appRoutes(app: FastifyInstance){
         const createLoja = z.object({
             nome: z.string(),
             email: z.string(),
-            senha: z.string()
+            senha: z.string(),
+            status: z.boolean(),
+            horario_inicio: z.string(),
+            horario_fim: z.string()
           })
       
-          const { nome, email, senha } = createLoja.parse(request.body)
+          const { nome, email, senha, status, horario_inicio, horario_fim } = createLoja.parse(request.body)
+          
+          const[hora, minuto] = horario_inicio.split(":")
+          const date = new Date()
+          date.setHours(parseInt(hora)-3, parseInt(minuto), 0)
+
+          const[hora2, minuto2] = horario_fim.split(":")
+          const date2 = new Date()
+          date2.setHours(parseInt(hora2)-3, parseInt(minuto2), 0)
 
           await prisma.loja.create({
             data:{
                 nome: nome,
                 email: email,
                 senha: senha,
+                status: status,
+                horario_inicio: date,
+                horario_fim: date2
             }
           })
     })

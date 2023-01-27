@@ -14,6 +14,9 @@ model loja{
   nome String @id
   email String @unique
   senha String
+  status Boolean
+  horario_inicio DateTime
+  horario_fim DateTime
 
   pedido pedido[]
   cardapio cardapio[]
