@@ -3,13 +3,6 @@ import { api } from "../../../lib/axios"
 import { PedidoContext } from "../../contexts/PedidoContext"
 import { VisibleContext } from "../../contexts/VisibleContext"
 
-interface CardProps{
-   reset: boolean,
-   setReset: Function
-   id: string,
-   itens?: any
-}
-
 type Itens = {
    id: number
    nome: boolean
@@ -20,23 +13,28 @@ type Itens = {
    loja_fk: string
 }[]
 
+interface CardProps{
+   reset: boolean,
+   setReset: Function
+   id: string,
+   itens?: Itens
+   status: string
+}
 
 export const CardPedido = (props: CardProps) => {
+   const { reset, setReset } = props
+   const contextVisible = useContext(VisibleContext)
+   const { inicioVisible } = contextVisible.visible
+   const context = useContext(PedidoContext)
+
    const [itens, setItens] = useState<Itens>()
+   const [selected,setSelected] = useState(false)
 
    useEffect(() => {
       api.get(`itens?pedido=${props.id}`).then((response)=>{
          setItens(response.data)
       })
    },[]) 
-
-   
-   const { reset, setReset } = props
-   const [selected,setSelected] = useState(false)
-
-   const context = useContext(PedidoContext)
-   const contextVisible = useContext(VisibleContext)
-   const { inicioVisible } = contextVisible.visible
 
    const style = selected ? "bg-gray-150 flex flex-col gap-3 pl-7 py-3 border-l-8 border-red-600 border-y-2 border-y-gray-150" 
    : "flex flex-col gap-3 pl-7 py-3 border-y-2 border-y-gray-1500"
@@ -59,8 +57,8 @@ export const CardPedido = (props: CardProps) => {
             }
          }
        >
-          <p>#{props.id}</p>
-          <h2>Confirme o pedido</h2>
+          <p className="font-semibold">#{props.id}</p>
+          <p>{props.status === "pendente" ? "Confirme o pedido!" : props.status === "confirmado" ? "Entregue o pedido!" : "Concluído"}</p>
        </div>
     )
 }

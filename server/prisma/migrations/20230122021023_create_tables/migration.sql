@@ -15,7 +15,7 @@ CREATE TABLE "cliente" (
 -- CreateTable
 CREATE TABLE "pedido" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "concluido" BOOLEAN NOT NULL,
+    "status" BOOLEAN NOT NULL,
     "loja_fk" TEXT NOT NULL,
     "cliente_fk" TEXT NOT NULL
 );

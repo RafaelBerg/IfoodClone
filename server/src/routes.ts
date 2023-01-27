@@ -4,6 +4,37 @@ import { z } from "zod"
 import { item, cardapio } from "@prisma/client"
 
 export async function appRoutes(app: FastifyInstance){
+    app.get("/pedido", async (request) => {
+        const getTitle = z.object({
+            id: z.string(),
+          })
+      
+        const { id } = getTitle.parse(request.query)
+
+        const pedidos = await prisma.pedido.findUnique({
+            where:{
+                id: parseInt(id)
+            }
+        })
+        return pedidos
+    })
+
+    app.post("/updPedido", async (request) => {
+        const updatePedido = z.object({
+            id: z.number(),
+            status: z.string()
+        })
+        const { id, status } = updatePedido.parse(request.body)
+        await prisma.pedido.update({
+            where:{
+                id: id
+            },
+            data:{
+                status: status
+            }
+        })
+    })
+
     app.get("/pedidos", async (request) => {
         const getTitle = z.object({
             loja: z.string(),
@@ -83,7 +114,7 @@ export async function appRoutes(app: FastifyInstance){
         return lojas
     })
 
-    app.post("/pedido", async (request) => {
+    app.post("/addPedido", async (request) => {
         const createPedido = z.object({
             loja: z.string(),
             cliente: z.string(),
@@ -99,7 +130,7 @@ export async function appRoutes(app: FastifyInstance){
     
           await prisma.pedido.create({
             data:{
-                concluido: false,
+                status: "pendente",
                 loja_fk: loja,
                 cliente_fk: cliente,
                 item:{

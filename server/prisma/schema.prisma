@@ -32,7 +32,7 @@ model cliente{
 
 model pedido{
   id Int @id @default(autoincrement())
-  concluido Boolean
+  status String
 
   loja_fk String
   cliente_fk String

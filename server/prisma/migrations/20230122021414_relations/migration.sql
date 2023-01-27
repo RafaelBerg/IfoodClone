@@ -12,13 +12,13 @@ DROP TABLE "cardapio";
 ALTER TABLE "new_cardapio" RENAME TO "cardapio";
 CREATE TABLE "new_pedido" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "concluido" BOOLEAN NOT NULL,
+    "status" BOOLEAN NOT NULL,
     "loja_fk" TEXT NOT NULL,
     "cliente_fk" TEXT NOT NULL,
     CONSTRAINT "pedido_cliente_fk_fkey" FOREIGN KEY ("cliente_fk") REFERENCES "cliente" ("email") ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT "pedido_loja_fk_fkey" FOREIGN KEY ("loja_fk") REFERENCES "loja" ("nome") ON DELETE RESTRICT ON UPDATE CASCADE
 );
-INSERT INTO "new_pedido" ("cliente_fk", "concluido", "id", "loja_fk") SELECT "cliente_fk", "concluido", "id", "loja_fk" FROM "pedido";
+INSERT INTO "new_pedido" ("cliente_fk", "status", "id", "loja_fk") SELECT "cliente_fk", "status", "id", "loja_fk" FROM "pedido";
 DROP TABLE "pedido";
 ALTER TABLE "new_pedido" RENAME TO "pedido";
 CREATE TABLE "new_item" (
