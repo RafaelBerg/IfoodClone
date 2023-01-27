@@ -8,7 +8,7 @@ export const Config = () => {
     const contextVisible = useContext(VisibleContext)
     return(
         <div className="flex items-center justify-center w-full gap-4"> 
-            <button className=" bg-red-600 text-white px-4 py-2 rounded-lg border" onClick={()=> {
+            <button className=" bg-red-600 text-white px-4 py-2 rounded-lg border hover:scale-95 ease-in-out duration-200" onClick={()=> {
                 contextVisible.setVisible({inicioVisible: true, 
                     detalhesVisible: false, 
                     cardapioVisible: false, 
@@ -17,7 +17,7 @@ export const Config = () => {
                     loginVisible: true
                   })
             }}>Sair da conta</button>          
-            <button className=" bg-red-600 text-white px-4 py-2 rounded-lg border" onClick={() => {
+            <button className=" bg-red-600 text-white px-4 py-2 rounded-lg border hover:scale-95 ease-in-out duration-200" onClick={() => {
                 contextVisible.setVisible({inicioVisible: true, 
                     detalhesVisible: false, 
                     cardapioVisible: false, 

@@ -8,6 +8,9 @@ type Loja = {
     nome: string
     email: string
     senha: string
+    status: boolean
+    horario_inicio: string
+    horario_fim: string
 }
 
 type LojaContextType = {
@@ -19,7 +22,11 @@ const initialValues = {
     loja: {
         nome: "",
         email: "",
-        senha: ""
+        senha: "",
+        status: false,
+        horario_inicio: "",
+        horario_fim: ""
+
     },
     setLoja: () => {}
 }
@@ -27,7 +34,7 @@ const initialValues = {
 export const LojaContext = React.createContext<LojaContextType>(initialValues)
 
 export const LojaContextProvider = ({children}: LojaContextProps) => {
-    const [loja, setLoja] = useState({nome: "", email: "", senha: ""})
+    const [loja, setLoja] = useState({nome: "", email: "", senha: "", status: false, horario_inicio: "", horario_fim: ""})
     
     return(
         <LojaContext.Provider value={{loja, setLoja}}>

@@ -19,11 +19,11 @@ export const DetalhesPedido = () => {
                 <CardDetalhes prato={"Total: "} valor={soma.toFixed(2).toString()} />                                                        
             </div>
             <div className="flex justify-end gap-4 border-t-2 pt-4 border-gray-300">
-                <button className="border border-red-600 rounded-md px-4 py-2 text-red-600"
+                <button className="border border-red-600 rounded-md px-4 py-2 text-red-600 hover:scale-95 ease-in-out duration-200"
                 >
                     Cancelar
                 </button>
-                <button className="bg-red-600 text-white px-4 py-2 rounded-md border"
+                <button className="bg-red-600 text-white px-4 py-2 rounded-md border hover:scale-95 ease-in-out duration-200"
                 >
                     Confirmar Pedido
                 </button>

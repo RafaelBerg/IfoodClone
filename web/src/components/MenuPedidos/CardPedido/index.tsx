@@ -50,7 +50,7 @@ export const CardPedido = (props: CardProps) => {
    },[reset])
 
     return(
-       <div className={style}
+       <div className={`${style} cursor-pointer hover:bg-gray-150 ease-in-out duration-300`} 
          onClick={()=> {             
             contextVisible.setVisible({inicioVisible: false, detalhesVisible: true, cardapioVisible: false, cadastroVisible: false})                   
             setReset(!reset)

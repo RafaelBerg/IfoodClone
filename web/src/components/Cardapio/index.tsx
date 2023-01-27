@@ -30,7 +30,7 @@ export const Cardapio = () => {
                 {edit.status === "true" && <button className= "bg-red-600 text-white px-4 rounded-md border text-lg" onClick={() => {
                     setEdit({...edit, status: "edit"})                  
                 }} >Salvar Modificações</button>}        
-                <button className="text-red-600 border border-red-600 font-semibold px-6 py-2 rounded-lg" 
+                <button className="text-red-600 border border-red-600 font-semibold px-6 py-2 rounded-lg hover:scale-95 ease-in-out duration-200" 
                 onClick={()=> {
                     contextVisible.setVisible({inicioVisible: false, detalhesVisible: false, cardapioVisible: true, cadastroVisible: true})   
                 }} >+ Adicionar um item</button>
