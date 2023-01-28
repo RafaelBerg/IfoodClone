@@ -16,9 +16,11 @@ export const DetalhesPedido = () => {
 
     return(
         <div className={"flex flex-col m-14 gap-10 w-full"}>
-            <h1 className="text-3xl text-gray-600 font-bold">Pedido #{context.pedido.numero}
-            </h1>
-            <div>              
+            <div>
+                <h1 className="text-3xl text-gray-600 font-bold">Pedido #{context.pedido.numero}</h1>
+                <p>Status do Pedido: <span className={status === "concluido" ? "text-green-500" : "text-red-500"}>{status[0].toUpperCase() + status.slice(1)}</span></p>
+            </div>    
+            <div>           
                 {context.pedido.itens?.map((item) => {
                     total += parseInt(item.qntd) * parseFloat(item.preco) 
                     return(
@@ -46,7 +48,7 @@ export const DetalhesPedido = () => {
                 >
                     {status === "confirmado" ? "Entregar Pedido!" : "Confirmar Pedido"}
                 </button>
-            </div> : <h2 className="text-green-500 font-semibold text-lg flex justify-center">Concluído</h2>}        
+            </div> : null}        
         </div>
     )
 }

@@ -32,8 +32,7 @@ function App() {
     <> 
       {loginVisible ? 
         <Login /> :         
-        <>
-        
+        <>  
           <Header />
           <div className="flex">
             <MenuLateral />
