@@ -20,7 +20,7 @@ export const Login = () => {
                 </div>                        
                 <Input  nome="Nome da loja" id="loja" style="border-2 py-3  pl-2 rounded-lg focus:border-red-600 focus:outline-none"/>
                 {cadastro && <Input nome="E-mail" id="email" style="border-2 py-3  pl-2 rounded-lg focus:border-red-600 focus:outline-none"/>}
-                <Input nome="Senha" id="senha" type="password" style="border-2 py-3 pr-60 pl-2 rounded-lg focus:border-red-600 focus:outline-none"/>                 
+                <Input nome="Senha" id="senha" type="password" style="border-2 py-3 w-110 pl-2 rounded-lg focus:border-red-600 focus:outline-none"/>                 
                 {!cadastro ? <>
                     <Button texto="Avançar" fn={() => {
                         const loja = document.getElementById("loja") as HTMLInputElement
