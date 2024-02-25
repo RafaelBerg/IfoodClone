@@ -24,7 +24,7 @@ export const Cardapio = () => {
     },[])
 
     return(
-        <div className="flex flex-col m-14 border shadow p-4 border-b-2 border-gray-300 w-screen overflow-y-scroll max-h-120">
+        <div className="flex flex-col m-14 border shadow p-4 border-b-2 border-gray-300 mx-auto w-4/6 overflow-y-scroll max-h-120">
             <div className="flex justify-between">
                 <h1 className="font-bold text-2xl">Menu</h1>
                 {edit.status === "true" && <button className= "bg-red-600 text-white px-4 rounded-md border text-lg" onClick={() => {
@@ -43,8 +43,7 @@ export const Cardapio = () => {
                 <p>Status</p>
                 </div>               
             </div>
-            {cardapio?.map((item) => {
-                
+            {cardapio?.map((item) => {             
                 return(
                     <CardItem key={item.id} id={item.id} nome={item.nome} preco={item.preco} status={item.status} edit={edit} setEdit={setEdit} />
                 )

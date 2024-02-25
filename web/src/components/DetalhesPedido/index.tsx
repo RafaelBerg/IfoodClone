@@ -15,7 +15,7 @@ export const DetalhesPedido = () => {
     },[context.pedido.numero])
 
     return(
-        <div className={"flex flex-col m-14 gap-10 w-full"}>
+        <div className={"flex flex-col m-14 gap-10 w-3/6 mx-auto "}>
             <div>
                 <h1 className="text-3xl text-gray-600 font-bold">Pedido #{context.pedido.numero}</h1>
                 <p>Status do Pedido: <span className={status === "concluido" ? "text-green-500" : "text-red-500"}>{status[0].toUpperCase() + status.slice(1)}</span></p>
@@ -40,7 +40,7 @@ export const DetalhesPedido = () => {
                     let changeStatus
                     if(status === "pendente") {setStatus("confirmado"); changeStatus = "confirmado"}
                     else if(status === "confirmado") {setStatus("concluido"); changeStatus = "concluido"}
-                    api.post("/updPedido", {
+                    api.put("/pedido", {
                         id: parseInt(context.pedido.numero),
                         status: changeStatus
                     })

@@ -23,7 +23,7 @@ export const CardItem = (props: CardItemProps) => {
     useEffect(() => {
         if(props.edit.status === "edit" && props.edit.id[0] === props.id){
             setTimeout(() => {
-                api.post("/updCardapio", {
+                api.put("/cardapio", {
                     id: props.id,
                     preco: parseFloat(value),
                     status: status
@@ -38,7 +38,7 @@ export const CardItem = (props: CardItemProps) => {
         <>
             <div className="flex justify-between mt-4 border-t-2 pt-4 items-center gap-14">
                 <div className="flex items-center gap-4 ml-2">
-                    <p>{props.nome}</p>
+                    <h2 className="text-lg text-black">{props.nome}</h2>
                 </div>
                 <div className="flex gap-10">
                     <input value={value} className="h-10 w-28 p-2 border border-gray-400 rounded-md placeholder:text-black" type="number" 

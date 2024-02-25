@@ -19,7 +19,7 @@ export async function appRoutes(app: FastifyInstance){
         return pedidos
     })
 
-    app.post("/updPedido", async (request) => {
+    app.put("/pedido", async (request) => {
         const updatePedido = z.object({
             id: z.number(),
             status: z.string()
@@ -114,7 +114,7 @@ export async function appRoutes(app: FastifyInstance){
         return lojas
     })
 
-    app.post("/addPedido", async (request) => {
+    app.post("/pedido", async (request) => {
         const createPedido = z.object({
             loja: z.string(),
             cliente: z.string(),
@@ -146,7 +146,7 @@ export async function appRoutes(app: FastifyInstance){
           })
     })
 
-    app.post("/addCliente", async (request) => {
+    app.post("/cliente", async (request) => {
         const createCliente = z.object({
             nome: z.string(),
             email: z.string(),
@@ -164,7 +164,7 @@ export async function appRoutes(app: FastifyInstance){
           })
     })
 
-    app.post("/addLoja", async (request) => {
+    app.post("/loja", async (request) => {
         const createLoja = z.object({
             nome: z.string(),
             email: z.string(),
@@ -196,7 +196,7 @@ export async function appRoutes(app: FastifyInstance){
           })
     })
 
-    app.post("/delLoja", async (request) => {
+    app.delete("/loja", async (request) => {
         const deleteLoja = z.object({
             nome: z.string()
           })
@@ -230,7 +230,7 @@ export async function appRoutes(app: FastifyInstance){
           })
     })
 
-    app.post("/delCliente", async (request) => {
+    app.delete("/cliente", async (request) => {
         const deleteCliente = z.object({
             email: z.string()
           })
@@ -259,7 +259,7 @@ export async function appRoutes(app: FastifyInstance){
           
     })
 
-    app.post("/addCardapio", async (request) => {
+    app.post("/cardapio", async (request) => {
         const createCardapio = z.object({
             nome: z.string(),
             preco: z.number(),
@@ -277,7 +277,7 @@ export async function appRoutes(app: FastifyInstance){
             }
           })
     })
-    app.post("/updCardapio", async (request) => {
+    app.put("/cardapio", async (request) => {
         const updateCardapio = z.object({
             id: z.number(),
             preco: z.number(),

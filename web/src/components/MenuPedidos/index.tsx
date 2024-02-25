@@ -16,6 +16,7 @@ export const MenuPedidos = () => {
     const [pedidos, setPedidos] = useState<Pedidos>()
     const [reset, setReset] = useState(false)
     const [search, setSearch] = useState("")
+    const [filter, setFilter] = useState("Todos")
     const [concluidos, setConcluidos] = useState(0)
 
     function atualizarPedidos() {
@@ -24,7 +25,7 @@ export const MenuPedidos = () => {
                 setPedidos(response.data)
             })
             atualizarPedidos()
-    }, 5000)}
+    }, 3000)}
 
     useEffect(() => {
         api.get(`pedidos?loja=${contextLoja.loja.nome}`).then((response)=>{
@@ -42,22 +43,32 @@ export const MenuPedidos = () => {
     },[pedidos])
 
     return(
-       <div className="shadow-2xl w-96 flex flex-col justify-between">
-            <div>
-                <input value={search} onChange={(e)=>setSearch(e.target.value)} className="w-80 border border-gray-400 rounded-sm mx-7 mt-3 p-3" type="text" placeholder="Buscar Pedido"></input>
+       <div className="shadow-2xl flex flex-col justify-between max-h-screen">
+            <div> 
+                <div className="flex justify-center gap-4 mx-4">
+                    <input value={search} onChange={(e)=>setSearch(e.target.value)} className="border border-gray-400 rounded-sm w-42 mt-3 p-3" type="text" placeholder="Buscar Pedido"></input>
+                    <select className="border border-gray-400 rounded-sm w-36 mt-3 p-3 text-black" onChange={(e) => {               
+                        setFilter(e.target.value.replace("í", "i"))
+                    }}>
+                        <option selected>Todos</option>
+                        <option>Pendente</option>
+                        <option>Confirmado</option>
+                        <option>Concluído</option>
+                    </select>                    
+                </div>    
                 <h2 className="bg-gray-150 mt-3 pl-7 py-2 border-y-2 border-gray-200">
                     Pendente <span className="font-bold text-lg">{pedidos?.length? pedidos?.length-concluidos : null}</span>
                 </h2>
-                <div className="overflow-y-scroll max-h-100 flex flex-col-reverse">
+                <div className="flex flex-col-reverse overflow-y-scroll max-h-110">
                     {pedidos?.filter((pedido) => {
-                        return pedido.id.toString().includes(search)
+                        return pedido.id.toString().includes(search) && (filter === "Todos" ? "todos" : pedido.status === filter.toLowerCase())
                     }).map((props)=> {
                         return(
                             <CardPedido key={props.id} status={props.status} id={props.id.toString()} reset={reset} setReset={setReset} />
                         )})}                                                                                                                   
                 </div>
             </div>
-            <div className="shadow-[0_10px_55px_-15px_rgba(0,0,0,7)] p-4 rounded-md ">
+            <div className="shadow-[0_10px_55px_-15px_rgba(0,0,0,7)] p-4 rounded-md">
                 <h2 className="font-semibold">Resumo de Vendas</h2>  
                 <p className="text-sm text-gray-600"><span className="font-bold text-lg">{concluidos}</span> {`${concluidos == 1 ? "Pedido concluído" : "Pedidos concluídos" }`}</p>         
             </div>

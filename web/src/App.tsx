@@ -29,12 +29,12 @@ function App() {
   const {inicioVisible, detalhesVisible, cardapioVisible, cadastroVisible, configVisible, loginVisible } = contextVisible.visible
 
   return (
-    <> 
+    <div className="flex flex-col h-screen"> 
       {loginVisible ? 
         <Login /> :         
         <>  
           <Header />
-          <div className="flex">
+          <div className="flex h-screen">
             <MenuLateral />
             <PedidoContextProvider>
               {(!cardapioVisible && !configVisible) && <MenuPedidos />}  
@@ -46,7 +46,7 @@ function App() {
             {configVisible &&  <Config />}
           </div>  
       </>}   
-    </>
+    </div>
   )
 }
 
